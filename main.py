@@ -21,12 +21,12 @@ user_input = input("검색할 학생의 이름을 띄어쓰기로 입력하세�
 
 target_names = user_input.split() 
 
-table_data = tools.get_selected_students(target_names)
+data = tools.get_selected_students(target_names)
 
 print("\n" + "="*40)
-if table_data: 
+if data: 
     headers = ["학번", "이름", "파이썬 성적", "출결 기록"]
-    print(tabulate(table_data, headers=headers, tablefmt="grid"))
+    print(tabulate(data, headers=headers, tablefmt="grid"))
 else: 
     print("❌ 일치하는 학생이 없습니다. 이름을 다시 확인해주세요.")
 print("="*40 + "\n")
