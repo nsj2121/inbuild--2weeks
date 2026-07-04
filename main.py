@@ -1,19 +1,32 @@
 import tools
 from tabulate import tabulate
 tools.add_student('12261247', '나승재')
-tools.add_grade('12261247', '컴퓨터프로그래밍파이썬', 95)
-tools.add_attendance('12261247', 'O')
+tools.add_grade('12261247', '파이썬', 95)
 tools.add_attendance('12261247', 'O')
 
-tools.add_student('12261223', '기장님')
-tools.add_grade('12261223', '컴퓨터프로그래밍파이썬', 93)
+tools.add_student('12261223', '윤종현')
+tools.add_grade('12261223', '파이썬', 88)
 tools.add_attendance('12261223', 'X')
-tools.add_attendance('12261223', 'O')
-table_data = []
-for student_id, info in tools.students.items():
-    name = info['이름']
-    python_score = info['성적'].get('컴퓨터프로그래밍파이썬', 0) 
-    attendance_record = " ".join(info['출결']) 
-    table_data.append([student_id, name, python_score, attendance_record])
-record = ["학번", "이름", "컴퓨터프로그래밍파이썬이썬 성적", "출결 기록"]
-print(tabulate(table_data, record=record, tablefmt="grid"))
+
+tools.add_student('12261234', '김파이썬')
+tools.add_grade('12261234', '파이썬', 100)
+tools.add_attendance('12261234', 'O')
+
+tools.add_student('12264321', '김백엔드')
+tools.add_grade('12264321', '파이썬', 75)
+tools.add_attendance('12264321', 'O')
+
+print("[등록된 학생 명단]: 나승재, 윤종현, 김파이썬, 김백엔드")
+user_input = input("검색할 학생의 이름을 띄어쓰기로 입력하세요 (예: 나승재 윤종현): ")
+
+target_names = user_input.split() 
+
+table_data = tools.get_selected_students(target_names)
+
+print("\n" + "="*40)
+if table_data: 
+    headers = ["학번", "이름", "파이썬 성적", "출결 기록"]
+    print(tabulate(table_data, headers=headers, tablefmt="grid"))
+else: 
+    print("❌ 일치하는 학생이 없습니다. 이름을 다시 확인해주세요.")
+print("="*40 + "\n")
